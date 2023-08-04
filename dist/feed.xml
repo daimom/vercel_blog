@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:base="https://daimom.vercel.app">
+    <title>度估記事本</title>
+    <link href="https://daimom.vercel.app/feed.xml" rel="self" />
+    <link href="https://daimom.vercel.app" />
+    <updated>2023-08-04T01:22:58Z</updated>
+    <id>https://daimom.vercel.app</id>
+        <entry>
+            <title>
+                README
+                
+            </title>
+            <updated>2023-08-03T08:45:26Z</updated>
+            <id>https://daimom.vercel.app/</id>
+            <content type="html">
+                &lt;p&gt;&lt;a class=&quot;internal-link&quot; data-note-icon=&quot;&quot; href=&quot;https://daimom.vercel.app/154.%20PaddlePaddle%20%E6%89%93%E5%8C%85image/&quot;&gt;154. PaddlePaddle 打包image&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;blog&quot; tabindex=&quot;-1&quot;&gt;Blog文章草稿&lt;/h1&gt;
+&lt;p&gt;完整文章請至 &lt;a href=&quot;https://daimom3020.blogspot.com/&quot; target=&quot;_blank&quot; class=&quot;external-link&quot;&gt;度估記事本&lt;/a&gt; 查詢&lt;/p&gt;
+
+            </content>
+            <link href="https://daimom.vercel.app/" />
+        </entry>
+        <entry>
+            <title>
+                154. PaddlePaddle 打包image
+                
+            </title>
+            <updated>2023-08-03T08:45:26Z</updated>
+            <id>https://daimom.vercel.app/154. PaddlePaddle 打包image/</id>
+            <content type="html">
+                &lt;h1 id=&quot;碎碎念&quot; tabindex=&quot;-1&quot;&gt;碎碎念&lt;/h1&gt;
+&lt;p&gt;這次的AI程式又更特別了，&lt;br /&gt;
+一堆不相容的套件，&lt;br /&gt;
+RD是在windows上開發，要包成image一堆牆，嘖嘖。&lt;/p&gt;
+&lt;h1 id=&quot;正文&quot; tabindex=&quot;-1&quot;&gt;正文&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;libGL.so.1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;apt-get install libgl1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;pycocotools&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;這個好解決，直接在requirements.txt上面增加 pycocotools&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Paddle&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;pip3 install paddlepaddle==2.4.2 -i https://mirror.baidu.com/pypi/simple
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Paddle安裝失敗&lt;br /&gt;
+這個就真的機車了，後來查是因爲paddle，不支援alpine linux，&lt;br /&gt;
+最後只好裝在ubuntu上面。&lt;/p&gt;
+&lt;p&gt;ref. &lt;a href=&quot;https://github.com/PaddlePaddle/Paddle/issues/30247&quot; target=&quot;_blank&quot; class=&quot;external-link&quot;&gt;github issue&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;torch&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;language-Dockerfile&quot;&gt;FROM ubuntu:20.04
+ENV PATH &amp;quot;$PATH:/usr/local/bin&amp;quot;
+WORKDIR /usr/local/app
+COPY . /usr/local/app
+
+RUN apt-get update &amp;amp;&amp;amp; apt-get install -y enchant &amp;amp;&amp;amp; apt-get install -y  python3.7 python3-pip libgl1 &amp;amp;&amp;amp; apt-get clean &amp;amp;&amp;amp; rm -rf /var/lib/apt/lists/*
+RUN pip3 install --upgrade pip
+RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+RUN pip3 install paddlepaddle==2.4.2 -i https://mirror.baidu.com/pypi/simple
+RUN pip3 install --no-cache-dir -r requirements.txt 
+ENTRYPOINT [&amp;quot;gunicorn&amp;quot;,&amp;quot;-c&amp;quot; ,&amp;quot;gunicorn_config.py&amp;quot;,&amp;quot;wsgi:app&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+
+            </content>
+            <link href="https://daimom.vercel.app/154. PaddlePaddle 打包image/" />
+        </entry>
+</feed>
