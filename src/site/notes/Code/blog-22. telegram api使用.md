@@ -10,7 +10,7 @@
   1. 首先你要有telegram帳號 XDDD
   2. 加入 @BotFather ，輸入指令 /newBot，開始命名，注意機器人名稱可以不用bot結尾，但@帳號最後一定是Bot結尾
 
-![blog-22.fig-1.jpg](/img/user/Code/blog-22.fig-1.jpg)
+![fig-1](/img/user/Code/blog-22.fig-1.jpg)
   3. 建立好了後，會有一組token，請不要隨意給人，因為只要有這組就能發送訊息出去了。
 
 ![blog-22.fig-2.jpg](/img/user/Code/blog-22.fig-2.jpg)
