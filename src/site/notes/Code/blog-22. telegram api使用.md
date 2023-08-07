@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/Code/blog-22. telegram api使用/","tags":["💻"],"created":"","updated":""}
+{"dg-publish":true,"permalink":"/Code/blog-22. telegram api使用/","title":"telegram api使用方法","tags":["💻"],"created":"","updated":""}
 ---
 
 
