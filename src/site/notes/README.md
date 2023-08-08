@@ -11,7 +11,7 @@ MOC是什麼？
 
 # Tag列表
    💡：Map Of Content
-   💻：[[Code/0.Code MOC\|0.Code MOC]]        
+   💻：[0.Code MOC]
    🐳：Container
    ⏱：Drone
    🗒：EFK
